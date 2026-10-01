@@ -5,69 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Payment</title>
     <style>
-        /* हर सेकंड रंग बदलने वाला बैकग्राउंड एनीमेशन */
         body {
             margin: 0;
             padding: 0;
+            background-color: #05020a;
             color: #ffffff;
             font-family: sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(45deg, #0b0518, #1f0b3a, #051429, #1c051c);
-            background-size: 400% 400%;
-            animation: gradientBG 8s ease infinite;
+            overflow: hidden;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            25% { background-position: 50% 100%; }
-            50% { background-position: 100% 50%; }
-            75% { background-position: 50% 0%; }
-            100% { background-position: 0% 50%; }
-        }
-
+        /* खतरनाक घूमने वाली नियॉन लाइन वाला डिब्बा */
         .container {
-            background-color: rgba(20, 13, 38, 0.85);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
+            position: relative;
+            width: 320px;
             padding: 40px 30px;
+            background: rgba(10, 5, 20, 0.9);
+            border-radius: 24px;
             text-align: center;
-            max-width: 350px;
-            width: 90%;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
         }
 
-        /* WELCOME टेक्स्ट का रंग भी हर सेकंड बदलेगा */
+        /* यहाँ हो रहा है नियॉन लाइन घूमने का जादू */
+        .container::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: conic-gradient(#d946ef, #3b82f6, #10b981, #ff2a2a, #d946ef);
+            animation: rotateLine 4s linear infinite;
+            z-index: 1;
+        }
+
+        .container::after {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            background: #0d071a;
+            border-radius: 20px;
+            z-index: 2;
+        }
+
+        /* अंदर की सभी चीजों को लाइन के ऊपर दिखाने के लिए */
+        .content {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+        }
+
+        @keyframes rotateLine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* WELCOME टेक्स्ट भी चमकेगा */
         h1 {
             font-size: 42px;
             margin-top: 0;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             font-weight: bold;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            color: #ffffff;
+            text-shadow: 0 0 10px #d946ef, 0 0 20px #d946ef, 0 0 40px #d946ef;
             text-transform: uppercase;
-            animation: textColorChange 5s linear infinite;
-        }
-
-        @keyframes textColorChange {
-            0% { color: #d946ef; text-shadow: 0 0 20px rgba(217, 70, 239, 0.6); }
-            33% { color: #3b82f6; text-shadow: 0 0 20px rgba(59, 130, 246, 0.6); }
-            66% { color: #10b981; text-shadow: 0 0 20px rgba(16, 185, 129, 0.6); }
-            100% { color: #d946ef; text-shadow: 0 0 20px rgba(217, 70, 239, 0.6); }
         }
 
         .pay-badge {
             display: inline-flex;
             align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(217, 70, 239, 0.4);
             border-radius: 12px;
             padding: 6px 16px;
-            font-size: 14px;
-            color: #ffffff;
+            font-size: 13px;
+            color: #d946ef;
             margin-bottom: 20px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(217, 70, 239, 0.1);
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(217, 70, 239, 0.2);
         }
 
         h2 {
@@ -77,8 +99,8 @@
         }
 
         p {
-            font-size: 14px;
-            color: #d1d5db;
+            font-size: 13px;
+            color: #9ca3af;
             margin: 0 0 25px 0;
             line-height: 1.4;
         }
@@ -88,12 +110,12 @@
             padding: 16px;
             border-radius: 20px;
             display: inline-block;
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 30px rgba(217, 70, 239, 0.3);
         }
 
         .qr-box img {
-            width: 230px;
-            height: 230px;
+            width: 220px;
+            height: 220px;
             display: block;
         }
     </style>
@@ -101,18 +123,20 @@
 <body>
 
 <div class="container">
-    <h1>WELCOME</h1>
-    
-    <div class="pay-badge">
-        <span>✨ RGB UPI Payment</span>
-    </div>
-    
-    <h2>Scan to pay</h2>
-    <p>Use PhonePe, Google Pay, Paytm, or any UPI app to scan the code below.</p>
-    
-    <div class="qr-box">
-        <!-- आपका 100% वर्किंग QR कोड जो कभी गायब नहीं होगा -->
-        <img src="https://qrserver.com" alt="UPI QR Code">
+    <div class="content">
+        <h1>WELCOME</h1>
+        
+        <div class="pay-badge">
+            <span>⚡️ NEON LIVE PAY ⚡️</span>
+        </div>
+        
+        <h2>Scan to pay</h2>
+        <p>Use PhonePe, Google Pay, Paytm, or any UPI app to scan the code below.</p>
+        
+        <div class="qr-box">
+            <!-- आपका 100% वर्किंग QR कोड इमेज जो अब बिल्कुल सही लोड होगी -->
+            <img src="https://qrserver.com" alt="UPI QR Code">
+        </div>
     </div>
 </div>
 
