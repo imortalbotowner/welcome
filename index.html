@@ -17,8 +17,6 @@
             min-height: 100vh;
             overflow: hidden;
         }
-
-        /* खतरनाक घूमने वाली नियॉन लाइन वाला डिब्बा */
         .container {
             position: relative;
             width: 320px;
@@ -33,8 +31,6 @@
             overflow: hidden;
             box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
         }
-
-        /* यहाँ हो रहा है नियॉन लाइन घूमने का जादू */
         .container::before {
             content: '';
             position: absolute;
@@ -44,7 +40,6 @@
             animation: rotateLine 4s linear infinite;
             z-index: 1;
         }
-
         .container::after {
             content: '';
             position: absolute;
@@ -53,20 +48,15 @@
             border-radius: 20px;
             z-index: 2;
         }
-
-        /* अंदर की सभी चीजों को लाइन के ऊपर दिखाने के लिए */
         .content {
             position: relative;
             z-index: 3;
             width: 100%;
         }
-
         @keyframes rotateLine {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
-        /* WELCOME टेक्स्ट भी चमकेगा */
         h1 {
             font-size: 42px;
             margin-top: 0;
@@ -77,7 +67,6 @@
             text-shadow: 0 0 10px #d946ef, 0 0 20px #d946ef, 0 0 40px #d946ef;
             text-transform: uppercase;
         }
-
         .pay-badge {
             display: inline-flex;
             align-items: center;
@@ -89,22 +78,18 @@
             margin-bottom: 20px;
             background: rgba(217, 70, 239, 0.1);
             font-weight: bold;
-            box-shadow: 0 0 10px rgba(217, 70, 239, 0.2);
         }
-
         h2 {
             font-size: 22px;
             margin: 0 0 8px 0;
             color: #ffffff;
         }
-
         p {
             font-size: 13px;
             color: #9ca3af;
             margin: 0 0 25px 0;
             line-height: 1.4;
         }
-
         .qr-box {
             background-color: #ffffff;
             padding: 16px;
@@ -112,7 +97,6 @@
             display: inline-block;
             box-shadow: 0 0 30px rgba(217, 70, 239, 0.3);
         }
-
         .qr-box img {
             width: 220px;
             height: 220px;
@@ -121,24 +105,18 @@
     </style>
 </head>
 <body>
-
 <div class="container">
     <div class="content">
         <h1>WELCOME</h1>
-        
         <div class="pay-badge">
             <span>⚡️ NEON LIVE PAY ⚡️</span>
         </div>
-        
         <h2>Scan to pay</h2>
         <p>Use PhonePe, Google Pay, Paytm, or any UPI app to scan the code below.</p>
-        
         <div class="qr-box">
-            <!-- आपका 100% वर्किंग QR कोड इमेज जो अब बिल्कुल सही लोड होगी -->
-            <img src="https://qrserver.com" alt="UPI QR Code">
+            <img src="https://postimg.cc" alt="UPI QR Code">
         </div>
     </div>
 </div>
-
 </body>
 </html>
